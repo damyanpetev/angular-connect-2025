@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Taking your Angular [Elements] to go — Presentation @ AngularConnect 2025</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css">
+    <!-- <link rel="stylesheet" href="node_modules/reveal.js/plugin/highlight/monokai.css" /> -->
+    <!-- <link rel="stylesheet" href="node_modules/highlight.js/styles/base16/atelier-plateau.css" /> -->
+    <!-- <link rel="stylesheet" href="node_modules/highlight.js/styles/base16/danqing.css" /> -->
+    <!-- <link rel="stylesheet" href="node_modules/highlight.js/styles/base16/darcula.css" /> -->
+    <!-- <link rel="stylesheet" href="node_modules/highlight.js/styles/base16/dracula.css" /> -->
+    <link rel="stylesheet" href="node_modules/highlight.js/styles/base16/material-darker.css" />
+    <!-- <link rel="stylesheet" href="node_modules/highlight.js/styles/base16/material-palenight.css" /> -->
+    <!-- <link rel="stylesheet" href="node_modules/highlight.js/styles/github-dark.css" /> -->
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- Use a section with data-markdown so the markdown plugin will fetch and render the file -->
+        <section data-markdown="slides.md"
+                 data-separator="^---$"
+                 data-separator-vertical="^====$"
+                 data-separator-notes="^Note:"
+                 data-charset="utf-8">
+        </section>
+      </div>
+    </div>
+    <script src="node_modules/reveal.js/dist/reveal.js"></script>
+    <script src="node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+    <script src="node_modules/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js"></script>
+    <script>
+      const deck = new Reveal({
+        hash: true,
+        plugins: [ RevealMarkdown, RevealMermaid, RevealHighlight ]
+      });
+      deck.initialize();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+:root {
+  --r-link-color: #82AAFF;
+}
+
+.reveal.slide {
+  background: linear-gradient(175deg, #27265f 5%, var(--r-background-color) 30%);
+  background-size: 100% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+code {
+  scrollbar-color: gray transparent;
+  scrollbar-width: none;
+}
+
+code.mermaid {
+   svg {
+    width: 100%;
+   }
+
+   img {
+    margin: 0;
+  }
+
+  .large img {
+    max-width: initial !important;
+  }
+}
+
+.profile-image {
+  width: 120px;
+  border-radius: 50%;
+  border: 3px solid #27265f;
+}
+
+
+@keyframes gradient {
+  0% {
+    background-position: 100% 25%;
+  }
+
+  50% {
+    background-position: 100% 10%;
+  }
+
+  100% {
+    background-position: 100% 25%;
+  }
+}
