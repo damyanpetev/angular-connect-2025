@@ -200,7 +200,7 @@ Analyzer and metadata config that enables us to handle:
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
 flowchart TD
-    AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->Angular;
+    AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->A[<img src="./assets/angular.svg">&emsp;&emsp;   Angular   &emsp;&emsp;];
 ```
 ---
 <!-- .slide: data-auto-animate -->
@@ -208,8 +208,8 @@ flowchart TD
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
 flowchart TD
-    AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->Angular;
-    AB-->B[Web Components];
+    AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->A[<img src="./assets/angular.svg">&emsp;&emsp;   Angular   &emsp;&emsp;];
+    AB-->B[<img src="./assets/web-components.svg"> Web Components];
 ```
 ---
 <!-- .slide: data-auto-animate -->
@@ -217,9 +217,9 @@ flowchart TD
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
 flowchart TD
-    AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->Angular;
-    AB-->B[Web Components];
-    AB-->React;
+    AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->A[<img src="./assets/angular.svg">&emsp;&emsp;   Angular   &emsp;&emsp;];
+    AB-->B[<img src="./assets/web-components.svg" width="50"> Web Components ];
+    AB-->C[<img src="./assets/react.svg">&emsp;&emsp;   React   &emsp;&emsp;];
 ```
 ---
 <!-- .slide: data-auto-animate -->
@@ -227,10 +227,10 @@ flowchart TD
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
 flowchart TD
-    AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->Angular;
-    AB-->B[Web Components];
-    AB-->React;
-    AB-->Blazor;
+    AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->A[<img src="./assets/angular.svg">&emsp;&emsp;   Angular   &emsp;&emsp;];
+    AB-->B[<img src="./assets/web-components.svg"> Web Components ];
+    AB-->C[<img src="./assets/react.svg">&emsp;&emsp;   React   &emsp;&emsp;];
+    AB-->D[<img src="./assets/blazor.svg">&emsp;&emsp;   Blazor   &emsp;&emsp;];
 ```
 ---
 
