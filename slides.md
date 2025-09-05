@@ -200,7 +200,7 @@ Analyzer and metadata config that enables us to handle:
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
 flowchart TD
-    AB[<img src='assets/app-builder-logo-use-against-light-with-TM-181x36.png' width="181"/>&emsp;&emsp;]:::large-->Angular;
+    AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->Angular;
 ```
 ---
 <!-- .slide: data-auto-animate -->
@@ -208,7 +208,7 @@ flowchart TD
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
 flowchart TD
-    AB[<img src='assets/app-builder-logo-use-against-light-with-TM-181x36.png' width="181"/>&emsp;&emsp;]:::large-->Angular;
+    AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->Angular;
     AB-->B[Web Components];
 ```
 ---
@@ -217,7 +217,7 @@ flowchart TD
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
 flowchart TD
-    AB[<img src='assets/app-builder-logo-use-against-light-with-TM-181x36.png' width="181"/>&emsp;&emsp;]:::large-->Angular;
+    AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->Angular;
     AB-->B[Web Components];
     AB-->React;
 ```
@@ -227,7 +227,7 @@ flowchart TD
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
 flowchart TD
-    AB[<img src='assets/app-builder-logo-use-against-light-with-TM-181x36.png' width="181"/>&emsp;&emsp;]:::large-->Angular;
+    AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->Angular;
     AB-->B[Web Components];
     AB-->React;
     AB-->Blazor;
