@@ -4,7 +4,6 @@
 
 html, body {
   font-family: var(--r-main-font);
-  font-size: var(--r-main-font-size);
 }
 
 .reveal.slide {

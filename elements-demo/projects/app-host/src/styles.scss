@@ -12,3 +12,23 @@ $include: (
     /* Removing all included components from the full list and excluding the rest  */
     $exclude: map.keys(map.remove($components, $include...))
 );
+
+// Create a custom subtitle-1 scale category style
+$my-subtitle-1: type-style(
+  $font-size: rem(42px),
+);
+
+// You can specify which categories from the type sale the card uses
+$card-categories: (
+  helper-text: 'subtitle-1',
+  input-text: 'subtitle-1',
+);
+
+weather-widget.visible {
+  --ig-size: var(--ig-size-large);
+  // Overwrite the 'subtitle-1' type style for this scope
+  @include type-style-vars('subtitle-1', $my-subtitle-1);
+
+  // Pass the custom card catergories to the card typography mixin
+  @include input-group-typography($card-categories);
+}
