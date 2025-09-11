@@ -209,7 +209,6 @@ flowchart TD
     AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->A[<img src="./assets/angular.svg">&emsp;&emsp;   Angular   &emsp;&emsp;];
 ```
 ---
-<!-- .slide: data-auto-animate -->
 ## Summary
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
@@ -218,7 +217,6 @@ flowchart TD
     AB-->B[<img src="./assets/web-components.svg"> Web Components];
 ```
 ---
-<!-- .slide: data-auto-animate -->
 ## Summary
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
@@ -228,7 +226,6 @@ flowchart TD
     AB-->C[<img src="./assets/react.svg">&emsp;&emsp;   React   &emsp;&emsp;];
 ```
 ---
-<!-- .slide: data-auto-animate -->
 ## Summary
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
@@ -239,14 +236,11 @@ flowchart TD
     AB-->D[<img src="./assets/blazor.svg">&emsp;&emsp;   Blazor   &emsp;&emsp;];
 ```
 ---
-
-<!-- .slide: data-auto-animate -->
 ## Giveaway ⏰🥽
 
 ![Giveaway QR Code](assets/giveaway-qr-code.png) <!-- .element style="width:50%" -->
 
 ---
-<!-- .slide: data-auto-animate -->
 ## Questions ❔
 
 ![Giveaway QR Code](assets/giveaway-qr-code.png) <!-- .element style="width:50%" -->
