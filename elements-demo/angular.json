@@ -28,7 +28,15 @@
                 "glob": "**/*",
                 "input": "projects/app-host/public"
               }
-            ]
+            ],
+            "styles": [
+              "projects/app-host/src/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "../node_modules"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -83,7 +91,15 @@
                 "glob": "**/*",
                 "input": "projects/app-host/public"
               }
-            ]
+            ],
+            "styles": [
+              "projects/app-host/src/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "../node_modules"
+              ]
+            }
           }
         }
       }

@@ -2,6 +2,11 @@
   --r-link-color: #82AAFF;
 }
 
+html, body {
+  font-family: var(--r-main-font);
+  font-size: var(--r-main-font-size);
+}
+
 .reveal.slide {
   background: linear-gradient(175deg, #27265f 5%, var(--r-background-color) 30%);
   background-size: 100% 200%;

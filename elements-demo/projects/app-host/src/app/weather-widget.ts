@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Output, input, signal, effect, model } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { IGX_SELECT_DIRECTIVES } from 'igniteui-angular';
 
 @Component({
   selector: 'weather-widget',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, IGX_SELECT_DIRECTIVES],
   templateUrl: './weather-widget.html',
   styleUrl: './weather-widget.scss'
 })

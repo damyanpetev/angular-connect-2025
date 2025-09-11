@@ -1,9 +1,10 @@
-<label for="location">Location: </label>
-<select id="location" [(ngModel)]="selectedLocationName">
+<igx-select [(ngModel)]="selectedLocationName" type="border">
+    <!-- <label igxLabel>Location: </label> -->
     @for (loc of locations; track loc) {
-        <option [ngValue]="loc.name">{{ loc.name }}</option>
+        <igx-select-item [value]="loc.name">{{ loc.name }}</igx-select-item>
     }
-</select>
+    <ng-template igxSelectToggleIcon>🔻</ng-template>
+</igx-select>
 
 <div class="weather-info">
     @if (weather()) {

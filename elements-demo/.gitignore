@@ -15,6 +15,7 @@
 # Allow the specific files
 !/dist/app-host/browser/polyfills.js
 !/dist/app-host/browser/main.js
+!/dist/app-host/browser/styles.css
 
 # Node
 /node_modules

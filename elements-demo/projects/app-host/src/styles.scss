@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use "igniteui-angular/theming" as *;
+
+$include: (
+  igx-select
+);
+
+@include core();
+@include theme(
+    $palette: $dark-material-palette,
+    $schema: $dark-material-schema,
+    /* Removing all included components from the full list and excluding the rest  */
+    $exclude: map.keys(map.remove($components, $include...))
+);
