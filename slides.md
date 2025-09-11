@@ -47,8 +47,7 @@ Note: For context: Presenter image is about as old as a previous presentation gi
 ## What are Angular Elements?
 
 - Angular components packaged as standards-based Web Components (custom elements). <!-- .element class="fragment" -->
-- Let you use Angular UI in non-Angular apps (static HTML, React, Vue, plain JS). <!-- .element class="fragment" -->
-- Built using @angular/elements and Angular's compiler to create a Custom Element. <!-- .element class="fragment" -->
+- Let you use Angular UI in non-Angular apps (static HTML, plain JS, React, Vue, etc.). <!-- .element class="fragment" -->
 
 ---
 
@@ -101,7 +100,6 @@ Reuse of tests. <!-- .element class="fragment" -->
 - Wrap an Angular component inside a Custom Element class. <!-- .element class="fragment" -->
 - On connectedCallback, Angular bootstraps a small element-specific injector and component factory. <!-- .element class="fragment" -->
 - Inputs map to element attributes/properties; outputs become custom DOM events. <!-- .element class="fragment" -->
-- ?? Can lazy-load Angular runtime per element to reduce initial cost. <!-- .element class="fragment" -->
 
 ---
 
@@ -394,14 +392,21 @@ class IgxCustomNgElementStrategy extends* ComponentNgElementStrategy {
 < 😊 here be grid >
 
 ---
-## Summary
+
+## The wishlist
+
+- Lifecycle QoL-s <!-- .element class="fragment" -->
+- Packaging <!-- .element class="fragment" -->
+- Differential compilation <!-- .element class="fragment" -->
+- < insert other minor issues here > <!-- .element class="fragment" -->
+
+---
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
 flowchart TD
     AB[<img src='assets/app-builder-logo.svg' width="200"/>&emsp;&emsp;]:::large-->A[<img src="./assets/angular.svg">&emsp;&emsp;   Angular   &emsp;&emsp;];
 ```
 ---
-## Summary
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
 flowchart TD
@@ -409,7 +414,6 @@ flowchart TD
     AB-->B[<img src="./assets/web-components.svg"> Web Components];
 ```
 ---
-## Summary
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
 flowchart TD
@@ -418,7 +422,6 @@ flowchart TD
     AB-->C[<img src="./assets/react.svg">&emsp;&emsp;   React   &emsp;&emsp;];
 ```
 ---
-## Summary
 ```mermaid
 %%{init: { "flowchart": { "useMaxWidth": false } }}%%
 flowchart TD
@@ -430,14 +433,6 @@ flowchart TD
 
 ---
 
-## We still need more
-
-- Lifecycle QoL-s <!-- .element class="fragment" -->
-- Packaging <!-- .element class="fragment" -->
-- Differential compile <!-- .element class="fragment" -->
-- < insert other minor issues here > <!-- .element class="fragment" -->
-
----
 ## Giveaway ⏰🥽
 
 ![Giveaway QR Code](assets/giveaway-qr-code.png) <!-- .element style="width:50%" -->
