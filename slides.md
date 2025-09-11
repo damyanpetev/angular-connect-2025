@@ -135,7 +135,13 @@ Inside `ComponentNgElementStrategy`:
 
 ---
 
-< ✨ custom element for demo placeholder ✨>
+```html
+<weather-widget selected-location-name="London"></weather-widget>
+```
+
+✨ <!-- .element class="fragment custom current-visible pulse-scale"-->
+
+<weather-widget selected-location-name="London"></weather-widget> <!-- .element class="fragment current-visible" -->
 
 ---
 

@@ -11,5 +11,9 @@
     "reveal-md": "^6.1.0",
     "reveal.js": "^4.4.0",
     "reveal.js-mermaid-plugin": "^11.6.0"
-  }
+  },
+  "workspaces": [
+    ".",
+    "elements-demo"
+  ]
 }

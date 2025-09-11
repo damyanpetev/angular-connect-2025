@@ -32,12 +32,29 @@
     <script src="node_modules/reveal.js/plugin/markdown/markdown.js"></script>
     <script src="node_modules/reveal.js/plugin/highlight/highlight.js"></script>
     <script src="node_modules/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js"></script>
+
+
+    <!-- Polyfills and main.js for Angular Elements -->
+    <script src="elements-demo/dist/app-host/browser/polyfills.js" type="module"></script>
+    <script src="elements-demo/dist/app-host/browser/main.js"  type="module"></script>
+
     <script>
       const deck = new Reveal({
         hash: true,
         plugins: [ RevealMarkdown, RevealMermaid, RevealHighlight ]
       });
-      deck.initialize();
+      deck
+        .initialize()
+        .then(() => {
+          //#region Demo: Listening to events from Angular Element
+          const widget = document.querySelector('weather-widget');
+    
+          widget.addEventListener('dataError', (event) => {
+            console.warn('Weather widget error:', event.detail);
+          });
+          //#endregion
+        })
+
     </script>
   </body>
 </html>

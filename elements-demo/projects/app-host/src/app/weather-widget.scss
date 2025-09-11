@@ -1,0 +1,12 @@
+:host {
+    display: inline-flex;
+    flex-direction: column;
+    max-width: 10em;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: .5em;
+}
+
+.weather-info {
+    font-size: larger;
+}

@@ -1,0 +1,17 @@
+<label for="location">Location: </label>
+<select id="location" [(ngModel)]="selectedLocationName">
+    @for (loc of locations; track loc) {
+        <option [ngValue]="loc.name">{{ loc.name }}</option>
+    }
+</select>
+
+<div class="weather-info">
+    @if (weather()) {
+        <h3>{{ weather()!.temperature }}°C</h3>
+        <p>{{ weather()!.description }}</p>
+    } @else {
+        <ng-content>
+            No data
+        </ng-content>
+    }
+</div>
