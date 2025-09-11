@@ -389,7 +389,14 @@ class IgxCustomNgElementStrategy extends* ComponentNgElementStrategy {
 ---
 ## It's alive!
 
-< 😊 here be grid >
+<igc-grid width="960px" height="500px" class="ig-scrollbar ig-typography" allow-filtering filter-mode="excelStyleFilter">
+  <igc-column field="ProductName" header="Prod. Name" width="180px" sortable has-summary resizable data-type="string"></igc-column>
+  <igc-column field="UnitPrice" header="Unit Price" width="180px" sortable has-summary resizable data-type="currency"></igc-column>
+  <igc-column field="OrderDate" header="Order Date" width="160px" sortable has-summary resizable data-type="date"></igc-column>
+  <igc-column field="UnitsInStock" header="In Stock" width="180px" sortable has-summary resizable data-type="number"></igc-column>
+  <igc-column field="UnitsOnOrder" header="On Order" width="180px" sortable has-summary resizable data-type="number"></igc-column>
+  <igc-column field="Discontinued" header="Discontinued" width="160px" sortable has-summary resizable data-type="boolean"></igc-column>
+</igc-grid>
 
 ---
 

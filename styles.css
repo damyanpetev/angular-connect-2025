@@ -42,6 +42,10 @@ code.mermaid {
   animation: pulse-scale 5s infinite ease-in-out;
 }
 
+igc-grid {
+  --ig-size: var(--ig-size-small);
+}
+
 @keyframes pulse-scale {
   0%, 100% {
     transform: scale(1);

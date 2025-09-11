@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="node_modules/highlight.js/styles/base16/material-darker.css" />
 
     <!-- Styles for Angular Elements -->
-    <link rel="stylesheet" href="elements-demo/dist/app-host/browser/styles.css"></script>
+    <link rel="stylesheet" href="elements-demo/dist/app-host/browser/styles.css" />
+    <link rel="stylesheet" href="node_modules/igniteui-webcomponents-grids/grids/themes/dark/material.css" />
 
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -35,7 +36,24 @@
     <script src="elements-demo/dist/app-host/browser/polyfills.js" type="module"></script>
     <script src="elements-demo/dist/app-host/browser/main.js"  type="module"></script>
 
-    <script>
+    <script type="importmap">
+    {
+      "imports": {
+        "lit": "/node_modules/lit/index.js",
+        "lit/decorators.js": "/node_modules/lit/decorators.js",
+        "lit/directives/": "/node_modules/lit/directives/",
+        "@lit/reactive-element": "/node_modules/@lit/reactive-element/reactive-element.js",
+        "@lit/reactive-element/decorators/": "/node_modules/@lit/reactive-element/decorators/",
+        "lit-html": "/node_modules/lit-html/lit-html.js",
+        "lit-html/": "/node_modules/lit-html/",
+        "lit-element/": "/node_modules/lit-element/"
+      }
+    }
+    </script>
+    <script src="node_modules/igniteui-webcomponents-grids/grids/combined.js" type="module"></script>
+
+    <script type="module">
+      import data from '/assets/grid-data.json' with { type: "json" };
       const deck = new Reveal({
         hash: true,
         plugins: [ RevealMarkdown, RevealMermaid, RevealHighlight ]
@@ -50,7 +68,13 @@
             console.warn('Weather widget error:', event.detail);
           });
           //#endregion
-        })
+
+          //#region Demo: Configure Grid Elemment
+          document.querySelectorAll('igc-grid').forEach(grid => {
+            grid.data = data;
+          });
+          //#endregion
+        });
 
     </script>
   </body>
