@@ -53,19 +53,45 @@ Note: For context: Presenter image is about as old as a previous presentation gi
 ---
 
 <!-- .slide: data-auto-animate -->
-## Why Elements?
+## Problem
 
-We've done the research comparing Elements vs bespoke implementations per framework <!-- .element class="fragment" -->
+- We have a large Angular component library. <!-- .element class="fragment" -->
+- We want to deliver the same components to other frameworks (React, Vue, Blazor). <!-- .element class="fragment" -->
 
-And the results clear <!-- .element class="fragment" -->
+---
+
+<!-- .slide: data-auto-animate -->
+## Options
+
+- Build new components natively for each framework/library. <!-- .element class="fragment" -->
+- Build new web components and wrap for the rest of the frameworks. <!-- .element class="fragment" -->
+- Reuse the existing Angular components as elements. <!-- .element class="fragment" -->
 
 ---
 
 <!-- .slide: data-auto-animate -->
 ## Why Elements?
 
-- Less initial effort <!-- .element class="fragment" -->
-- Single code base -> less perpetual maintenance effort <!-- .element class="fragment" -->
+We've done the research comparing Elements vs bespoke implementations per framework <!-- .element class="fragment" -->
+
+And the result is clear <!-- .element class="fragment" -->
+
+- 5 years to build all our grids with the features they have in Angular. <!-- .element class="fragment" -->
+- 3 years to build 80% of the features. <!-- .element class="fragment" -->
+- 6 months and 1/4 of the manpower to wrap the Angular components as Elements. <!-- .element class="fragment" -->
+
+
+---
+
+<!-- .slide: data-auto-animate -->
+## Why Elements [cont.]?
+
+Single code base. <!-- .element class="fragment" -->
+
+Easier maintenance. <!-- .element class="fragment" -->
+
+Reuse of tests. <!-- .element class="fragment" -->
+
 
 ---
 
@@ -74,7 +100,7 @@ And the results clear <!-- .element class="fragment" -->
 
 - Wrap an Angular component inside a Custom Element class. <!-- .element class="fragment" -->
 - On connectedCallback, Angular bootstraps a small element-specific injector and component factory. <!-- .element class="fragment" -->
-- Inputs map to element attributes/properties; outputs become DOM events. <!-- .element class="fragment" -->
+- Inputs map to element attributes/properties; outputs become custom DOM events. <!-- .element class="fragment" -->
 - ?? Can lazy-load Angular runtime per element to reduce initial cost. <!-- .element class="fragment" -->
 
 ---
