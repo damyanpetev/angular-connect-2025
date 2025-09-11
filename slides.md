@@ -235,7 +235,7 @@ flowchart TD
 ---
 
 <!-- .slide: data-auto-animate -->
-## Giveaway ⏰
+## Giveaway ⏰🥽
 
 ![Giveaway QR Code](assets/giveaway-qr-code.png) <!-- .element style="width:50%" -->
 
