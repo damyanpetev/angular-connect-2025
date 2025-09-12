@@ -24,22 +24,11 @@ Damyan Petev — Product Architect, Infragistics
 Konstantin Dinev — Director Of Product Development, Infragistics
 
 ---
-<!-- .slide: data-auto-animate -->
 > 2016 Me: "Zone.JS hooray!"
 
----
-<!-- .slide: data-auto-animate -->
-> 2016 Me: "Zone.JS hooray!"
+> And Now: Well... <!-- .element class="fragment" -->
 
-> And Now: Well...
-
----
-<!-- .slide: data-auto-animate -->
-> 2016 Me: "Zone.JS hooray!"
-
-> And Now: Well...
-
-![Old Screenshot Joke](assets/haha-laughing.gif)
+![Old Screenshot Joke](assets/haha-laughing.gif) <!-- .element class="fragment" -->
 
 Note: For context: Presenter image is about as old as a previous presentation given as Angular 2 was just launching that welcomed our new monkey-patching overlord (in light of ye ol' $digest cycle struggles) and has aged like fine.. milk, in the current age of going zoneless :)
 ---
