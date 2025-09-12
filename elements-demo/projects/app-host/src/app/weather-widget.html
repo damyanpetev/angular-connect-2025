@@ -1,5 +1,4 @@
 <igx-select [(ngModel)]="selectedLocationName" type="border">
-    <!-- <label igxLabel>Location: </label> -->
     @for (loc of locations; track loc) {
         <igx-select-item [value]="loc.name">{{ loc.name }}</igx-select-item>
     }
