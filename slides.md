@@ -55,7 +55,7 @@ Note: For context: Presenter image is about as old as a previous presentation gi
 ## Problem
 
 - We have a large Angular component library. <!-- .element class="fragment" -->
-- We want to deliver the same components to other frameworks (React, Vue, Blazor). <!-- .element class="fragment" -->
+- We want to deliver the same components to other frameworks (React, Vue, Blazor, etc.). <!-- .element class="fragment" -->
 
 ---
 
@@ -83,14 +83,11 @@ And the result is clear <!-- .element class="fragment" -->
 ---
 
 <!-- .slide: data-auto-animate -->
-## Why Elements [cont.]?
+## More Benefits
 
-Single code base. <!-- .element class="fragment" -->
-
-Easier maintenance. <!-- .element class="fragment" -->
-
-Reuse of tests. <!-- .element class="fragment" -->
-
+1. Single code base. <!-- .element class="fragment" -->
+2. Easier maintenance. <!-- .element class="fragment" -->
+3. Reuse of tests. <!-- .element class="fragment" -->
 
 ---
 
