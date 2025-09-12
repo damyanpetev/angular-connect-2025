@@ -1,34 +1,12 @@
-@use 'sass:map';
-@use "igniteui-angular/theming" as *;
-
-$include: (
-  igx-select
-);
-
-@include core();
-@include theme(
-    $palette: $dark-material-palette,
-    $schema: $dark-material-schema,
-    /* Removing all included components from the full list and excluding the rest  */
-    $exclude: map.keys(map.remove($components, $include...))
-);
-
-// Create a custom subtitle-1 scale category style
-$my-subtitle-1: type-style(
-  $font-size: rem(42px),
-);
-
-// You can specify which categories from the type sale the card uses
-$card-categories: (
-  helper-text: 'subtitle-1',
-  input-text: 'subtitle-1',
-);
-
+/* Additional adjustments for Reveal.js slide scaling */
 weather-widget.visible {
+  font-size: 1rem;
+  transform: scale(1.5);
   --ig-size: var(--ig-size-large);
-  // Overwrite the 'subtitle-1' type style for this scope
-  @include type-style-vars('subtitle-1', $my-subtitle-1);
+  --ig-input-group-size: 42px;
+}
 
-  // Pass the custom card catergories to the card typography mixin
-  @include input-group-typography($card-categories);
+.igx-overlay {
+  font-size: 30px;
+  --ig-drop-down-size: 56px;
 }
