@@ -79,14 +79,71 @@ And the result is clear <!-- .element class="fragment" -->
 3. Reuse of tests. <!-- .element class="fragment" -->
 
 ---
-
-<!-- .slide: data-auto-animate -->
 ## How Angular Elements work
 
-- Wrap an Angular component inside a Custom Element class. <!-- .element class="fragment" -->
-- On connectedCallback, Angular bootstraps a small element-specific injector and component factory. <!-- .element class="fragment" -->
-- Inputs map to element attributes/properties; outputs become custom DOM events. <!-- .element class="fragment" -->
+```mermaid
+flowchart LR
+    init-->init2
+    subgraph create["<b>Custom Element class</b>"]
+    init["On connectedCallback"]
+    attr["Element attributes/properties"]
+    events["Dispatch CustomEvent"]
+    end
+    subgraph strat["ComponentNgElementStrategy"]
+    init2["Create Angular instance"]
+    setInput["Set Angular component input"]
+    outputs["Angular Component outputs"]
+    end
+    style create fill:transparent,stroke:#fff,stroke-width:1px,color:#fff
+    style strat fill:transparent,stroke:#fff,stroke-width:1px,color:#fff
+    linkStyle 0 stroke:#c4c4c4,stroke-dasharray: 5 5
+```
+---
+## How Angular Elements work
 
+```mermaid
+flowchart LR
+    init-->init2
+    attr-->setInput
+    subgraph create["<b>Custom Element class</b>"]
+    init["On connectedCallback"]
+    attr["Element attributes/properties"]
+    events["Dispatch CustomEvent"]
+    end
+    subgraph strat["ComponentNgElementStrategy"]
+    init2["Create Angular instance"]
+    setInput["Set Angular component input"]
+    outputs["Angular Component outputs"]
+    end
+    style create fill:transparent,stroke:#fff,stroke-width:1px,color:#fff
+    style strat fill:transparent,stroke:#fff,stroke-width:1px,color:#fff
+    linkStyle 0 stroke:#c4c4c4,stroke-dasharray: 5 5
+    linkStyle 1 stroke:#c4c4c4,stroke-dasharray: 5 5
+```
+---
+## How Angular Elements work
+
+```mermaid
+flowchart LR
+    init-->init2
+    attr-->setInput
+    events<-->outputs
+    subgraph create["<b>Custom Element class</b>"]
+    init["On connectedCallback"]
+    attr["Element attributes/properties"]
+    events["Dispatch CustomEvent"]
+    end
+    subgraph strat["ComponentNgElementStrategy"]
+    init2["Create Angular instance"]
+    setInput["Set Angular component input"]
+    outputs["Angular Component outputs"]
+    end
+    style create fill:transparent,stroke:#fff,stroke-width:1px,color:#fff
+    style strat fill:transparent,stroke:#fff,stroke-width:1px,color:#fff
+    linkStyle 0 stroke:#c4c4c4,stroke-dasharray: 5 5
+    linkStyle 1 stroke:#c4c4c4,stroke-dasharray: 5 5
+    linkStyle 2 stroke:#c4c4c4,stroke-dasharray: 5 5
+```
 ---
 
 <!-- .slide: data-auto-animate -->
@@ -94,7 +151,7 @@ And the result is clear <!-- .element class="fragment" -->
 
 Inside `createCustomElement`:
 
-<pre><code  class="language-typescript" data-line-numbers="4,6|9|12,14|19-20">
+<pre><code  class="language-typescript" data-line-numbers="2|4,6|9|12,14|19-20">
   class NgElementImpl extends NgElement {
 
     override attributeChangedCallback(attrName: string, _, newValue: string): void {
