@@ -41,7 +41,9 @@ Product Architect, Infragistics
 
 > And Now: "Well..." <!-- .element class="fragment" -->
 
-![Old Screenshot Joke](assets/haha-laughing.gif) <!-- .element class="fragment" -->
+![Old Screenshot Joke](assets/haha-laughing.gif) <!-- .element class="fragment fade-in-then-out" -->
+
+... <!-- .element class="fragment" -->
 
 Note: For context: Presenter image is about as old as a previous presentation given as Angular 2 was just launching that welcomed our new monkey-patching overlord (in light of ye ol' $digest cycle struggles) and has aged like fine.. milk, in the current age of going zoneless :)
 ---
