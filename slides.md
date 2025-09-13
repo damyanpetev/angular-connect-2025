@@ -37,9 +37,9 @@ Product Architect, Infragistics
 </div>
 </div>
 ---
-> 2016 Me: "Zone.JS hooray!"
+> Me Then: "Zone.JS hooray!"
 
-> And Now: Well... <!-- .element class="fragment" -->
+> And Now: "Well..." <!-- .element class="fragment" -->
 
 ![Old Screenshot Joke](assets/haha-laughing.gif) <!-- .element class="fragment" -->
 
@@ -48,8 +48,7 @@ Note: For context: Presenter image is about as old as a previous presentation gi
 
 ## What are Angular Elements?
 
-- Angular components packaged as standards-based Web Components (custom elements). <!-- .element class="fragment" -->
-- Let you use Angular UI in non-Angular apps (static HTML, plain JS, React, Vue, etc.). <!-- .element class="fragment" -->
+Angular components packaged as standards-based Web Components (custom elements). <!-- .element class="fragment" -->
 
 ---
 
