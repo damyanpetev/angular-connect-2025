@@ -54,6 +54,7 @@
 
     <script type="module">
       import data from '/assets/grid-data.json' with { type: "json" };
+      import { html } from 'lit';
       const deck = new Reveal({
         hash: true,
         plugins: [ RevealMarkdown, RevealMermaid, RevealHighlight ]
@@ -73,9 +74,11 @@
           document.querySelectorAll('igc-grid').forEach(grid => {
             grid.data = data;
           });
+
+          const inStockColumn = document.getElementById('inStockColumn');
+          inStockColumn.bodyTemplate = ({ cell: { value }}) => html`${value < 20 ? '⚠️ ' + value : value}`;
           //#endregion
         });
-
     </script>
   </body>
 </html>

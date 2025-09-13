@@ -295,14 +295,95 @@ export var registerConfig = [
 <!-- .slide: data-auto-animate -->
 ### Shopping list
 
-- Adding methods to prototype
-- Handling of child components with: <!-- .element class="fragment" -->
+- Handling of child components with:
   - Parent injector structure, so parent-child mechanisms work <!-- .element class="fragment" -->
   - Query updates <!-- .element class="fragment" -->
+- Adding methods to prototype <!-- .element class="fragment" -->
 - Templates handling <!-- .element class="fragment" --> <aside>(we chose Lit, so Lit➡️TemplateRef)</aside> <!-- .element class="fragment" -->
 - Lifecycle modifications inside templates (quite niche) <!-- .element class="fragment" -->
 
 ---
+
+### Custom strategy
+
+<pre><code  class="language-typescript" data-line-numbers="2|4|7|9|16|25,30|36|40">
+class IgxCustomNgElementStrategy extends* ComponentNgElementStrategy {
+  // [...]
+  protected override async initializeComponent(element: HTMLElement) {
+    // [...]
+    const parents: WeakRef<IgcNgElement>[] = [];
+    const componentConfig = this.config?.find(x => x.component === this._componentFactory.componentType);
+
+    const configParents = componentConfig?.parents
+      .map(parentType => this.config.find(x => x.component === parentType))
+      .filter(x => x.selector);
+
+    if (configParents?.length) {
+      let node = element as IgcNgElement;
+      while (node?.parentElement) {
+        node = node.parentElement.closest&lt;IgcNgElement&gt;(configParents.flatMap(x => [
+          x.selector,
+          reflectComponentType(x.component).selector
+        ]).join(','));
+        if (node) {
+          parents.push(new WeakRef(node));
+        }
+      }
+      // select closest of all possible config parents
+      let parent = parents[0]?.deref();
+
+      if (parent?.ngElementStrategy) {
+        this.parentElement = new WeakRef(parent);
+        let parentComponentRef = await parent?.ngElementStrategy[ComponentRefKey];
+        parentInjector = parentComponentRef?.injector;
+        // [...]
+      }
+    }
+    // [...]
+
+    const parentQueries = this.getParentContentQueries(componentConfig, parents, configParents);
+
+    for (const { parent, query } of parentQueries) {
+      if (query.isQueryList) {
+        parent.ngElementStrategy.scheduleQueryUpdate(query.property);
+      } else {
+        const parentRef = await parent.ngElementStrategy[ComponentRefKey];
+        parentRef.instance[query.property] = componentRef.instance;
+        parentRef.changeDetectorRef.detectChanges();
+      }
+    }
+
+    // [...]
+    });
+  }
+  // [...]
+</code></pre>
+
+---
+
+```html
+<igc-grid id="grid1" width="960px" height="500px" class="ig-scrollbar ig-typography" allow-filtering filter-mode="excelStyleFilter">
+  <igc-column field="ProductName" header="Prod. Name" width="180px" sortable has-summary resizable data-type="string"></igc-column>
+  <igc-column field="UnitPrice" header="Unit Price" width="180px" sortable has-summary resizable data-type="currency"></igc-column>
+  <igc-column field="OrderDate" header="Order Date" width="160px" sortable has-summary resizable data-type="date"></igc-column>
+  <igc-column field="UnitsInStock" header="In Stock" width="180px" sortable has-summary resizable data-type="number"></igc-column>
+  <igc-column field="UnitsOnOrder" header="On Order" width="180px" sortable has-summary resizable data-type="number"></igc-column>
+  <igc-column field="Discontinued" header="Discontinued" width="160px" sortable has-summary resizable data-type="boolean"></igc-column>
+</igc-grid>
+```
+---
+
+<igc-grid id="grid1" width="960px" height="500px" class="ig-scrollbar ig-typography" allow-filtering filter-mode="excelStyleFilter">
+  <igc-column field="ProductName" header="Prod. Name" width="180px" sortable has-summary resizable data-type="string"></igc-column>
+  <igc-column field="UnitPrice" header="Unit Price" width="180px" sortable has-summary resizable data-type="currency"></igc-column>
+  <igc-column field="OrderDate" header="Order Date" width="160px" sortable has-summary resizable data-type="date"></igc-column>
+  <igc-column field="UnitsInStock" header="In Stock" width="180px" sortable has-summary resizable data-type="number"></igc-column>
+  <igc-column field="UnitsOnOrder" header="On Order" width="180px" sortable has-summary resizable data-type="number"></igc-column>
+  <igc-column field="Discontinued" header="Discontinued" width="160px" sortable has-summary resizable data-type="boolean"></igc-column>
+</igc-grid>
+
+---
+
 ### Custom create element
 
 <pre><code  class="language-typescript" data-line-numbers="7|12|15|18|22-23">
@@ -332,93 +413,43 @@ export function createIgxCustomElement(component: Type, config: IgxNgElementConf
   // [...]
 </code></pre>
 
----
-## How Ignite UI addresses these limitations
-
-<pre><code  class="language-typescript" data-line-numbers="2|8|14|17|19|26|35,38|40|45-46|52|55-56|64|67-68|71-72">
-class IgxCustomNgElementStrategy extends* ComponentNgElementStrategy {
-  // [...]
-
-  protected get templateWrapper(): TemplateWrapperComponent {
-      if (!this._templateWrapperRef) {
-          const viewRef = componentRef.injector.get(ViewContainerRef);
-          this._templateWrapperRef = viewRef.createComponent(TemplateWrapperComponent);
-      }
-      return this._templateWrapperRef.instance;
-  }
-  // [...]
-
-  protected override async initializeComponent(element: HTMLElement) {
-    // [...]
-    const parents: WeakRef<IgcNgElement>[] = [];
-    const componentConfig = this.config?.find(x => x.component === this._componentFactory.componentType);
-
-    const configParents = componentConfig?.parents
-      .map(parentType => this.config.find(x => x.component === parentType))
-      .filter(x => x.selector);
-
-    if (configParents?.length) {
-      let node = element as IgcNgElement;
-      while (node?.parentElement) {
-        node = node.parentElement.closest&lt;IgcNgElement&gt;(configParents.flatMap(x => [
-          x.selector,
-          reflectComponentType(x.component).selector
-        ]).join(','));
-        if (node) {
-          parents.push(new WeakRef(node));
-        }
-      }
-      // select closest of all possible config parents
-      let parent = parents[0]?.deref();
-
-      // Collected parents may include direct Angular HGrids, so only wait for configured parent elements:
-      const configParent = configParents.find(x => x.selector === parent?.tagName.toLocaleLowerCase());
-      if (configParent && !customElements.get(configParent.selector)) {
-        await customElements.whenDefined(configParent.selector);
-      }
-
-      if (parent?.ngElementStrategy) {
-        this.parentElement = new WeakRef(parent);
-        let parentComponentRef = await parent?.ngElementStrategy[ComponentRefKey];
-        parentInjector = parentComponentRef?.injector;
-        // [...]
-      }
-    }
-
-    // need to be able to reset the injector (as protected) to the parent's to call super normally
-    this.injector = parentInjector || this._injector;
-
-    /** Modified copy of super.initializeComponent: */
-    if (parentAnchor && parentInjector) {
-      // attempt to attach the newly created ViewRef to the parents's instead of the App global
-      // [...]
-    } else if (!parentAnchor) {
-      this.appRef.attachView(this.componentRef.hostView);
-      this.componentRef.hostView.detectChanges();
-    }
-    // [...]
-
-    const parentQueries = this.getParentContentQueries(componentConfig, parents, configParents);
-
-    for (const { parent, query } of parentQueries) {
-      if (query.isQueryList) {
-        parent.ngElementStrategy.scheduleQueryUpdate(query.property);
-      } else {
-        const parentRef = await parent.ngElementStrategy[ComponentRefKey];
-        parentRef.instance[query.property] = componentRef.instance;
-        parentRef.changeDetectorRef.detectChanges();
-      }
-    }
-
-    // [...]
-    });
-  }
-  // [...]
-</code></pre>
 
 ---
+```html
+<igc-grid id="grid2">
+  <igc-column field="ProductName" header="Prod. Name" width="180px" sortable has-summary resizable data-type="string"></igc-column>
+  <igc-column field="UnitPrice" header="Unit Price" width="180px" sortable has-summary resizable data-type="currency"></igc-column>
+  <!-- ...  -->
+</igc-grid>
+```
+<!-- .element data-line-numbers -->
+---
+<!-- .slide: data-auto-animate -->
+```html
+<igc-grid id="grid2">
+  <igc-column field="ProductName" header="Prod. Name" width="180px" sortable has-summary resizable data-type="string"></igc-column>
+  <igc-column field="UnitPrice" header="Unit Price" width="180px" sortable has-summary resizable data-type="currency"></igc-column>
+  <!-- ...  -->
+</igc-grid>
+<button onclick="grid2.selectColumns(['ProductName','UnitPrice'])">selectColumns(['ProductName','UnitPrice'])</button>
+<button onclick="grid2.deselectAllColumns()">deselectAllColumns()</button>
+```
+<!-- .element data-line-numbers -->
+---
 
-## How Ignite UI addresses these limitations
+<igc-grid id="grid2" width="960px" height="500px" class="ig-scrollbar ig-typography" allow-filtering filter-mode="excelStyleFilter">
+  <igc-column field="ProductName" header="Prod. Name" width="180px" sortable has-summary resizable data-type="string"></igc-column>
+  <igc-column field="UnitPrice" header="Unit Price" width="180px" sortable has-summary resizable data-type="currency"></igc-column>
+  <igc-column id="orderDate" field="OrderDate" header="Order Date" width="160px" sortable has-summary resizable data-type="date"></igc-column>
+  <igc-column field="UnitsInStock" header="In Stock" width="180px" sortable has-summary resizable data-type="number"></igc-column>
+  <igc-column field="UnitsOnOrder" header="On Order" width="180px" sortable has-summary resizable data-type="number"></igc-column>
+  <igc-column field="Discontinued" header="Discontinued" width="160px" sortable has-summary resizable data-type="boolean"></igc-column>
+</igc-grid>
+<button onclick="grid2.selectColumns(['ProductName','UnitPrice'])">selectColumns(['ProductName','UnitPrice'])</button>
+<button onclick="grid2.deselectAllColumns()">deselectAllColumns</button>
+---
+
+### Template wrapper
 
 <pre><code  class="language-html" data-line-numbers="2|4|5">
 @for (templateFunc of templateFunctions; track templateFunc) {
@@ -430,13 +461,21 @@ class IgxCustomNgElementStrategy extends* ComponentNgElementStrategy {
 </code></pre>
 
 ---
+```js
+import { html } from 'lit';
+
+const inStockColumn = document.getElementById('inStockColumn');
+inStockColumn.bodyTemplate = ({ cell: { value }}) =>
+  html`${value < 20 ? '⚠️ ' + value : value}`;
+```
+---
 ## It's alive!
 
 <igc-grid width="960px" height="500px" class="ig-scrollbar ig-typography" allow-filtering filter-mode="excelStyleFilter">
   <igc-column field="ProductName" header="Prod. Name" width="180px" sortable has-summary resizable data-type="string"></igc-column>
   <igc-column field="UnitPrice" header="Unit Price" width="180px" sortable has-summary resizable data-type="currency"></igc-column>
   <igc-column field="OrderDate" header="Order Date" width="160px" sortable has-summary resizable data-type="date"></igc-column>
-  <igc-column field="UnitsInStock" header="In Stock" width="180px" sortable has-summary resizable data-type="number"></igc-column>
+  <igc-column id="inStockColumn" field="UnitsInStock" header="In Stock" width="180px" sortable has-summary resizable data-type="number"></igc-column>
   <igc-column field="UnitsOnOrder" header="On Order" width="180px" sortable has-summary resizable data-type="number"></igc-column>
   <igc-column field="Discontinued" header="Discontinued" width="160px" sortable has-summary resizable data-type="boolean"></igc-column>
 </igc-grid>
