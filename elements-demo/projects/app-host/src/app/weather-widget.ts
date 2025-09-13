@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Output, input, signal, effect, model } from '@angular/core';
+import { Component, EventEmitter, Output, model, resource } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { IGX_SELECT_DIRECTIVES } from 'igniteui-angular';
+
+type WeatherData = { temperature: number; description: string } | null;
 
 @Component({
   selector: 'weather-widget',
@@ -22,40 +24,38 @@ export class WeatherWidget {
   ];
 
   selectedLocation = this.locations[0];
-  weather = signal<{ temperature: number; description: string } | null>(null);
-
-  constructor(private http: HttpClient) {
-    // React to any change in selectedLocationName (from dropdown or external input)
-    effect(() => {
-      const name = this.selectedLocationName();
-      const loc = this.locations.find(l => l.name.toLowerCase() === name.toLowerCase());
-
+  weather = resource<WeatherData | null, any>({
+    params: () => ({ name: this.selectedLocationName() }),
+    loader: async ({ params }) => {
+      const loc = this.locations.find(l => l.name.toLowerCase() === params.name.toLowerCase());
       if (!loc) {
-        this.weather.set(null);
-        this.dataError.emit(`Unknown location: ${name}`);
-        return;
+        this.dataError.emit(`Unknown location: ${params.name}`);
+        return null;
       }
+      return this.fetchWeather(loc.lat, loc.lon) as unknown as Promise<WeatherData | null>;
+    },
+  });
 
-      this.fetchWeather(loc.lat, loc.lon);
-    });
-  }
+  constructor(private http: HttpClient) {}
 
-  private fetchWeather(lat: number, lon: number) {
-    this.http.get<any>(
-      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode`
-    ).subscribe({
-      next: (data) => {
-        const temp = data.current.temperature_2m;
-        const code = data.current.weathercode;
-        this.weather.set({
-          temperature: temp,
-          description: this.mapWeatherCode(code)
-        });
-      },
-      error: () => {
-        this.weather.set(null);
-        this.dataError.emit('Failed to get weather data');
-      }
+  private fetchWeather(lat: number, lon: number): Promise<WeatherData | null> {
+    return new Promise((resolve) => {
+      this.http.get<any>(
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode`
+      ).subscribe({
+        next: (data) => {
+          const temp = data.current.temperature_2m;
+          const code = data.current.weathercode;
+          resolve({
+            temperature: temp,
+            description: this.mapWeatherCode(code)
+          });
+        },
+        error: () => {
+          this.dataError.emit('Failed to get weather data');
+          resolve(null);
+        }
+      });
     });
   }
 

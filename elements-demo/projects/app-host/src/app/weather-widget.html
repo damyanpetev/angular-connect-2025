@@ -6,9 +6,9 @@
 </igx-select>
 
 <div>
-    @if (weather()) {
-        <h3>{{ weather()!.temperature }}°C</h3>
-        <p>{{ weather()!.description }}</p>
+    @if (weather.value() != null) {
+        <h3>{{ weather.value()!.temperature }}°C</h3>
+        <p>{{ weather.value()!.description }}</p>
     } @else {
         <ng-content>
             No data
