@@ -533,15 +533,7 @@ flowchart TD
 ```
 
 ---
-
-## Giveaway ⏰🥽
-
-![Giveaway QR Code](assets/giveaway-qr-code.png) <!-- .element style="width:50%" -->
-
----
 ## Questions ❔
-
-![Giveaway QR Code](assets/giveaway-qr-code.png) <!-- .element style="width:50%" -->
 
 ---
 
