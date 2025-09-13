@@ -457,8 +457,8 @@ export function createIgxCustomElement(component: Type, config: IgxNgElementConf
   <igc-column field="UnitsOnOrder" header="On Order" width="180px" sortable has-summary resizable data-type="number"></igc-column>
   <igc-column field="Discontinued" header="Discontinued" width="160px" sortable has-summary resizable data-type="boolean"></igc-column>
 </igc-grid>
-<button onclick="grid2.selectColumns(['ProductName','UnitPrice'])">selectColumns(['ProductName','UnitPrice'])</button>
-<button onclick="grid2.deselectAllColumns()">deselectAllColumns</button>
+<button igxbutton="outlined" class="igx-button igx-button--outlined" onclick="grid2.selectColumns(['ProductName','UnitPrice'])">selectColumns(['ProductName','UnitPrice'])</button>
+<button igxbutton="outlined" class="igx-button igx-button--outlined" onclick="grid2.deselectAllColumns()">deselectAllColumns</button>
 ---
 
 ### Template wrapper
