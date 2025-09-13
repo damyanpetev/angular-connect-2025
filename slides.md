@@ -15,14 +15,27 @@
 
 ## Hey 👋
 
-![Damyan Petev](assets/Damyan.png) <!-- .element: class="profile-image" -->
+<div class="r-hstack">
 
-Damyan Petev — Product Architect, Infragistics
+<div>
 
 ![Konstantin Dinev](assets/konstantin-dinev.jpg) <!-- .element: class="profile-image" -->
 
-Konstantin Dinev — Director Of Product Development, Infragistics
+Konstantin Dinev
+<br>
+Director Of Product Development, Infragistics
+</div>
 
+<div>
+
+![Damyan Petev](assets/Damyan.png) <!-- .element: class="profile-image" -->
+
+Damyan Petev
+<br>
+Product Architect, Infragistics
+
+</div>
+</div>
 ---
 > 2016 Me: "Zone.JS hooray!"
 
